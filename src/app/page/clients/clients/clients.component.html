@@ -1,0 +1,26 @@
+<ion-toolbar>
+  <ion-segment (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="active" checked>
+      <ion-label>Active</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="lead">
+      <ion-label>Lead</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="inactive">
+      <ion-label>Inactive</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-toolbar>
+<ion-searchbar (ionInput)="getItems($event.target.value)" (ionClear)="cleared()"></ion-searchbar>
+<ion-content>
+  <!-- <ion-list>
+    <ion-item *ngFor="let client of clientsShow" (click)="presentModal(client)">
+      <ion-label>{{client.first}} {{client.last}}</ion-label>
+    </ion-item>
+  </ion-list> -->
+  <ion-virtual-scroll [items]="clientsShow">
+    <ion-item *virtualItem="let client" (click)="presentModal(client)">
+      <ion-label>{{client.first}} {{client.last}}</ion-label>
+    </ion-item>
+  </ion-virtual-scroll>
+</ion-content>

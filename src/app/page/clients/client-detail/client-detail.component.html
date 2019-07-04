@@ -1,0 +1,75 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <div (click)="dismiss()">Close</div>
+        </ion-buttons>
+        <ion-title text-center>Client Detail</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <form [formGroup]="formClient" (ngSubmit)="onSubmit()">
+        <div class="mt-3">
+            <ion-label>First name: </ion-label>
+            <input formControlName="first" />
+        </div>
+        <div>
+            <ng-container *ngFor="let validation of validationMessages.first">
+                <div
+                    *ngIf="formClient.get('first').hasError(validation.type) && (formClient.get('first').dirty || formClient.get('first').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+        </div>
+        <div class="mt-3">
+            <ion-label>Last name: </ion-label>
+            <input formControlName="last" />
+        </div>
+        <div>
+            <ng-container *ngFor="let validation of validationMessages.last">
+                <div
+                    *ngIf="formClient.get('last').hasError(validation.type) && (formClient.get('last').dirty || formClient.get('last').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+        </div>
+        <div class="mt-3">
+            <ion-label>Email: </ion-label>
+            <input formControlName="email" />
+        </div>
+        <div>
+            <ng-container *ngFor="let validation of validationMessages.email">
+                <div
+                    *ngIf="formClient.get('email').hasError(validation.type) && (formClient.get('email').dirty || formClient.get('email').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+        </div>
+        <div class="mt-3">
+            <ion-label>Phone: </ion-label>
+            <input formControlName="phone1" />
+        </div>
+        <div>
+            <ng-container *ngFor="let validation of validationMessages.phone1">
+                <div
+                    *ngIf="formClient.get('phone1').hasError(validation.type) && (formClient.get('phone1').dirty || formClient.get('phone1').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+        </div>
+        <div class="mt-3">
+            <ion-label>
+                License plates: </ion-label>
+            <input formControlName="number" />
+        </div>
+        <div>
+            <ng-container *ngFor="let validation of validationMessages.number">
+                <div
+                    *ngIf="formClient.get('number').hasError(validation.type) && (formClient.get('number').dirty || formClient.get('number').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+        </div>
+        <button class="mt-3" type="submit" (click)="submitted===false" [disabled]="!formClient.valid">Submit</button>
+    </form>
+</ion-content>
